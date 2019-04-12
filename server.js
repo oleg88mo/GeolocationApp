@@ -37,6 +37,6 @@ server.listen().then(({url}) => {
 
 //       serv        yarn dev
 //       client        yarn start
-// LESS 10 - 3.35
+// LESS 17
 
 // http://localhost:4000/playground
