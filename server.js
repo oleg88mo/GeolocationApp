@@ -19,7 +19,6 @@ const server = new ApolloServer({
             authToken = req.headers.authorization;
 
             if (authToken) {
-                // find or create user
                 currentUser = await findOrCreateUser(authToken);
             }
         } catch (e) {
@@ -31,12 +30,5 @@ const server = new ApolloServer({
 });
 
 server.listen().then(({url}) => {
-    console.log('url', url);
+    console.log('url:', url);
 });
-
-
-//       serv        yarn dev
-//       client        yarn start
-// LESS 17
-
-// http://localhost:4000/playground

@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Context from '../../context';
 import {ME_QUERY} from '../../graphql/queries'
+import {BASE_URL} from '../../client';
 
 const Login = ({classes}) => {
     const {dispatch} = useContext(Context);
@@ -13,7 +14,7 @@ const Login = ({classes}) => {
     const onSuccess = async googleUser => {
         try {
             const idToken = googleUser.getAuthResponse().id_token;
-            const client = new GraphQLClient('http://localhost:4000/graphql', {
+            const client = new GraphQLClient(BASE_URL, {
                 headers: {authorization: idToken}
             });
             const {me} = await client.request(ME_QUERY);
@@ -28,7 +29,8 @@ const Login = ({classes}) => {
     };
 
     const onFailure = err => {
-        console.error("Err", err)
+        console.error("Err", err);
+        dispatch({type: "IS_LOGGED_IN", payload: false})
     };
 
     return <div className={classes.root}>
